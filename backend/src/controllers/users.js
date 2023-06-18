@@ -6,7 +6,7 @@ const homeUser = (req, res) => {
 };
 const createUser = (req, res) => {
   try {
-    const dataToSave = userModel.insertMany(req.body, res);
+    const dataToSave = userModel.insertMany(req.body);
     res.status(200).json({
       message: "success create data",
       data: dataToSave,
