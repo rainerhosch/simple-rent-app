@@ -1,0 +1,49 @@
+{
+  "name": "backend-rent",
+  "version": "1.0.0",
+  "description": "This a simple backend nodejs with express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rzoktan/rent-app.git"
+  },
+  "keywords": [
+    "vehicle-rental",
+    "expressjs",
+    "nodejs",
+    "backend"
+  ],
+  "author": "oktan.eth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rzoktan/rent-app/issues"
+  },
+  "homepage": "https://github.com/rzoktan/rent-app#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "nodemon": "^2.0.15"
+  }
+}
