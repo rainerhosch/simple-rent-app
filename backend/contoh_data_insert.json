@@ -1,0 +1,15 @@
+{
+  "name": "Rizky Ar",
+  "email": "rizkyokt1994@gmail.com",
+  "passwor": "123456",
+  "image": "rizky.jpg",
+  "phone": "087790001615",
+  "active_year": "2023",
+  "gender_id": 1,
+  "address": "jatiluhur",
+  "dob": "2023-06-13",
+  "roles_id": 1,
+  "pin_verify": 1,
+  "status": "active",
+  "pin_reset_pass": 12345
+}
