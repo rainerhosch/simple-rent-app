@@ -3,10 +3,10 @@ const express = require("express");
 const mainRouter = express.Router();
 
 // deklarasi router sub/import
-const wellcomeRouter = require("./wellcome");
+// const wellcomeRouter = require("./wellcome");
 const userRouter = require("./users");
 const genderRouter = require("./genders");
-// const vehicleRouter = require("./vehicles");
+const categoryItemRouter = require("./item_category");
 // const locationRouter = require("./locations");
 // const historyRouter = require("./history");
 // const testimonialRouter = require("./testimonial");
@@ -15,12 +15,12 @@ const genderRouter = require("./genders");
 
 // const upload = require('../middlewares/upload');
 
-mainRouter.use("/wellcome", wellcomeRouter); //wellcome
+// mainRouter.use("/wellcome", wellcomeRouter); //wellcome
 // mainRouter.use("/auth", authRouter);
 // mainRouter.use("/admin", adminRouter);
 mainRouter.use("/users", userRouter);
 mainRouter.use("/genders", genderRouter);
-// mainRouter.use("/vehicles", vehicleRouter);
+mainRouter.use("/categories", categoryItemRouter);
 // mainRouter.use("/locations", locationRouter);
 // mainRouter.use("/history", historyRouter);
 // mainRouter.use("/testimonial", testimonialRouter);

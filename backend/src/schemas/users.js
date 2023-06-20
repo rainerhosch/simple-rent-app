@@ -1,23 +1,4 @@
 const mongoose = require("mongoose");
-
-// const schema = mongoose.Schema({
-//   // id: Number,
-//   name: String,
-//   email: String,
-//   passwor: String,
-//   image: String,
-//   phone: String,
-//   active_year: String,
-//   gender_id: Number,
-//   address: String,
-//   dob: { type: Date },
-//   roles_id: Number,
-//   pin_verify: Number,
-//   status: String,
-//   pin_reset_pass: Number,
-//   create_at: { type: Date, default: Date.now },
-//   update_at: { type: Date, default: Date.now },
-// });
 const schema = mongoose.Schema({
   // id: Number,
   name: {
@@ -46,7 +27,7 @@ const schema = mongoose.Schema({
   },
   gender_id: {
     require: true,
-    type: Number,
+    type: String,
   },
   address: {
     require: true,
