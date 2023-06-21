@@ -8,10 +8,10 @@ const userController = require("../controllers/users");
 // Get user
 userRouter.get("/", userController.homeUser);
 // userRouter.post("/user", checkToken, userController.userData);
-userRouter.post("/create", userController.createUser);
-userRouter.get("/getAll", userController.userData);
-userRouter.get("/getOne/:id", userController.userData);
-userRouter.put("/edit", userController.editUser);
-userRouter.delete("/delete", userController.deleteUser);
+userRouter.post("/create", userController.createUsers);
+userRouter.get("/getAll", userController.findAllUsers);
+userRouter.get("/getOne/:id", userController.findByIdUsers);
+userRouter.patch("/edit/:id", userController.editUsers);
+userRouter.delete("/delete/:id", userController.deleteUsers);
 
 module.exports = userRouter;

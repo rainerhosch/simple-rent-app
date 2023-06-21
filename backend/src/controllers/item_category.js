@@ -18,7 +18,7 @@ const categoryItemCreate = async (req, res) => {
       });
     } else {
       res.status(403).json({
-        message: "Data sudah ada.",
+        message: `Data kategori (${fieldFilter}) sudah ada.`,
         data: cekExist,
         status: false,
       });
@@ -91,18 +91,35 @@ const categoryItemEdit = async (req, res) => {
     const id = req.params.id;
     const updatedData = req.body;
     const options = { new: true };
-    const data = await categoryItemModel.findByIdAndUpdate(
-      id,
-      updatedData,
-      options
-    );
-    res.send(data);
-    // const update = categoryItemModel.save();
-    // res.status(200).json({
-    //   message: `Data category ${data.category_name}, berhasil dihapus!`,
-    //   data: id,
-    //   status: true,
-    // });
+    const cekExist = await categoryItemModel.findOne({
+      _id: id,
+    });
+    if (cekExist === null) {
+      res.status(200).json({
+        message: `Data tidak ditemukan!`,
+        data: {
+          id: id,
+        },
+        status: false,
+      });
+    } else {
+      updatedData.update_at = Date.now();
+      const data = await categoryItemModel.findByIdAndUpdate(
+        id,
+        updatedData,
+        options
+      );
+      res.status(200).json({
+        message: `Data category ${data.category_name}, berhasil diupdate!`,
+        data: {
+          id: id,
+          befor_update: cekExist,
+          after_update: data,
+          update_param: req.body,
+        },
+        status: true,
+      });
+    }
   } catch (error) {
     res.status(400).json({
       message: error.message,

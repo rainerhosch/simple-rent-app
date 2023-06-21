@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-  category_name: {
-    unique: true,
+  role_name: {
     require: true,
     type: String,
   },
@@ -14,4 +13,4 @@ const schema = mongoose.Schema({
   update_at: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("item_category", schema);
+module.exports = mongoose.model("roles", schema);

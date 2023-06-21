@@ -1,46 +1,15 @@
-const genderModel = require("../schemas/genders");
+const userRoleModels = require("../schemas/user_role");
 const responseHelper = require("../helpers/sendResponse");
 
-// // Method for create gender datas
-// const genderCreate = (req, res) => {
-//   try {
-//     const dataToSave = genderModel.insertMany(req.body);
-//     res.status(200).json({
-//       message: "success create data",
-//       data: dataToSave,
-//     });
-//   } catch (error) {
-//     res.status(400).json({
-//       message: error.message,
-//       data: null,
-//     });
-//   }
-// };
-
-// // Method for find gender datas
-// const genderData = (req, res) => {};
-
-// // Method for edit gender datas
-// const genderEdit = (req, res) => {};
-
-// // Method for delete gender datas
-// const genderDelete = (req, res) => {};
-
-// module.exports = {
-//   genderCreate,
-//   genderData,
-//   genderEdit,
-//   genderDelete,
-// };
-// Method for create gender datas
-const createGenders = async (req, res) => {
+// Method for create role datas
+const createUserRole = async (req, res) => {
   try {
     const fieldFilter = req.body.email;
-    const cekExist = await genderModel.findOne({
+    const cekExist = await userRoleModels.findOne({
       email: [fieldFilter],
     });
     if (cekExist === null) {
-      const dataToSave = genderModel.insertMany(req.body);
+      const dataToSave = userRoleModels.insertMany(req.body);
       res.status(200).json({
         message: "success create data",
         data: dataToSave,
@@ -48,7 +17,7 @@ const createGenders = async (req, res) => {
       });
     } else {
       res.status(403).json({
-        message: `Data gender dengan email (${fieldFilter}) sudah ada.`,
+        message: `Data role dengan email (${fieldFilter}) sudah ada.`,
         data: cekExist,
         status: false,
       });
@@ -63,15 +32,15 @@ const createGenders = async (req, res) => {
   }
 };
 
-// Method for find all gender datas
-const findAllGenders = async (req, res) => {
+// Method for find all role datas
+const findAllUserRole = async (req, res) => {
   try {
     console.log(req.params.id);
-    const dataGender = await genderModel.find({});
-    if (dataGender.length > 0) {
+    const dataUserRole = await userRoleModels.find({});
+    if (dataUserRole.length > 0) {
       res.status(200).json({
         message: "Data tersedia.",
-        data: dataGender,
+        data: dataUserRole,
         status: true,
       });
     } else {
@@ -89,14 +58,14 @@ const findAllGenders = async (req, res) => {
     });
   }
 };
-// Method for find gender datas by IDs
-const findByIdGenders = async (req, res) => {
+// Method for find role datas by IDs
+const findByIdUserRole = async (req, res) => {
   try {
-    const dataGender = await genderModel.find({ _id: req.params.id });
-    if (dataGender.length > 0) {
+    const dataUserRole = await userRoleModels.find({ _id: req.params.id });
+    if (dataUserRole.length > 0) {
       res.status(200).json({
         message: "Data tersedia.",
-        data: dataGender,
+        data: dataUserRole,
         status: true,
       });
     } else {
@@ -115,13 +84,13 @@ const findByIdGenders = async (req, res) => {
   }
 };
 
-// Method for edit gender datas
-const editGenders = async (req, res) => {
+// Method for edit role datas
+const editUserRole = async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
     const options = { new: true };
-    const cekExist = await genderModel.findOne({
+    const cekExist = await userRoleModels.findOne({
       _id: id,
     });
     if (cekExist === null) {
@@ -134,13 +103,13 @@ const editGenders = async (req, res) => {
       });
     } else {
       updatedData.update_at = Date.now();
-      const data = await genderModel.findByIdAndUpdate(
+      const data = await userRoleModels.findByIdAndUpdate(
         id,
         updatedData,
         options
       );
       res.status(200).json({
-        message: `Data gender ${data.gender_name}, berhasil diupdate!`,
+        message: `Data role ${data.role_name}, berhasil diupdate!`,
         data: {
           id: id,
           befor_update: cekExist,
@@ -159,13 +128,13 @@ const editGenders = async (req, res) => {
   }
 };
 
-// Method for delete gender datas
-const deleteGenders = async (req, res) => {
+// Method for delete role datas
+const deleteUserRole = async (req, res) => {
   try {
     const id = req.params.id;
-    const data = await genderModel.findByIdAndDelete({ _id: id });
+    const data = await userRoleModels.findByIdAndDelete({ _id: id });
     res.status(200).json({
-      message: `Data gender ${data.gender_name}, berhasil dihapus!`,
+      message: `Data role ${data.role_name}, berhasil dihapus!`,
       data: id,
       status: true,
     });
@@ -178,9 +147,9 @@ const deleteGenders = async (req, res) => {
   }
 };
 module.exports = {
-  createGenders,
-  findAllGenders,
-  findByIdGenders,
-  editGenders,
-  deleteGenders,
+  createUserRole,
+  findAllUserRole,
+  findByIdUserRole,
+  editUserRole,
+  deleteUserRole,
 };

@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "64915060abe335a997162cac"
+  },
+  "gender_name": "Laki-laki",
+  "initial": "L",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64915060abe335a997162cad"
+  },
+  "gender_name": "Perempuan",
+  "initial": "P",
+  "__v": 0
+}]

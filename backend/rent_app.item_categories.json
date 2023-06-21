@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "64915afb177c7a4c6c395f0e"
+  },
+  "category_name": "Alat Makan",
+  "descriptions": "Berbagai macam alat makan bayi.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64916f9e8588e54976f188fd"
+  },
+  "category_name": "Kereta Bayi",
+  "descriptions": "Berbagai macam kereta bayi.(Update2)",
+  "__v": 0
+}]
