@@ -14,7 +14,10 @@ import Testimonial from "../../components/Testimonial";
 
 import vehicleImgDefault from "../../assets/img/vehicle-default.png";
 
-import { listVehiclePopularAction } from "../../redux/actions/listVehicles";
+import {
+  listVehiclePopularAction,
+  listItems,
+} from "../../redux/actions/listVehicles";
 import { paramsPopulerVehicle } from "../../modules/helper/listVehicle";
 
 const Home = () => {
@@ -41,7 +44,7 @@ const Home = () => {
       })
       .catch((...err) => console.log(err));
 
-    dispatch(listVehiclePopularAction(paramsPopulerVehicle)).catch((err) => {
+    dispatch(listItems("/getAll")).catch((err) => {
       if (err) {
         navigate("/error%20server");
       }
