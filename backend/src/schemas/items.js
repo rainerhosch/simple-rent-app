@@ -5,7 +5,7 @@ const schema = mongoose.Schema({
     require: true,
     type: String,
   },
-  item_type: {
+  item_category: {
     require: true,
     type: String,
   },
@@ -13,9 +13,9 @@ const schema = mongoose.Schema({
     require: true,
     type: String,
   },
-  total_items: {
+  item_totals: {
     require: true,
-    type: String,
+    type: Number,
   },
   item_image: {
     require: true,

@@ -2,7 +2,7 @@
   {
     "name": "Rizky Ardiansyah",
     "email": "rizkyokt1994@gmail.com",
-    "passwor": "123456",
+    "password": "rizky1994",
     "image": "rizky.jpg",
     "phone": "087790001615",
     "active_year": "2023",
@@ -17,7 +17,7 @@
   {
     "name": "Altair Decoder",
     "email": "altair@gmail.com",
-    "passwor": "000000",
+    "password": "000000",
     "image": "altair.jpg",
     "phone": "0812111789",
     "active_year": "2023",
@@ -32,7 +32,7 @@
   {
     "name": "Alex Saepuloh",
     "email": "alexsae@gmail.com",
-    "passwor": "123456",
+    "password": "",
     "image": "alex.jpg",
     "phone": "087790001615",
     "active_year": "2023",

@@ -1,36 +1,23 @@
-const userModel = require("../schemas/users");
-const bcrypt = require("bcrypt");
+const itemModel = require("../schemas/items");
 
-const homeUser = (req, res) => {
-  res.status(200).json({ message: "Hi from service users." });
-};
-
-// Method for create user datas
-const createUsers = async (req, res) => {
+// Method for create item datas
+const itemCreate = async (req, res) => {
+  // res.send(cekExist);
   try {
-    const fieldFilter = req.body.email;
-    const cekExist = await userModel.findOne({
-      email: [fieldFilter],
+    const fieldFilter = req.body.item_name;
+    const cekExist = await itemModel.findOne({
+      item_name: [fieldFilter],
     });
     if (cekExist === null) {
-      const dataToSave = req.body;
-      for (i = 0; i < dataToSave.length; i++) {
-        const salt = await bcrypt.genSalt(10);
-        var dataPass = dataToSave[i].password;
-        if (dataPass == null || dataToSave[i].password == "") {
-          dataPass = "default";
-        }
-        dataToSave[i].password = await bcrypt.hash(dataPass, salt);
-      }
-      const savedData = userModel.insertMany(dataToSave);
+      const dataToSave = itemModel.insertMany(req.body);
       res.status(200).json({
         message: "success create data",
-        data: savedData,
+        data: dataToSave,
         status: true,
       });
     } else {
       res.status(403).json({
-        message: `Data user dengan email (${fieldFilter}) sudah ada.`,
+        message: `Data items (${fieldFilter}) sudah ada.`,
         data: cekExist,
         status: false,
       });
@@ -45,15 +32,15 @@ const createUsers = async (req, res) => {
   }
 };
 
-// Method for find all user datas
-const findAllUsers = async (req, res) => {
+// Method for find item datas
+const itemFindAll = async (req, res) => {
   try {
     console.log(req.params.id);
-    const dataUser = await userModel.find({});
-    if (dataUser.length > 0) {
+    const dataitem = await itemModel.find({});
+    if (dataitem.length > 0) {
       res.status(200).json({
         message: "Data tersedia.",
-        data: dataUser,
+        data: dataitem,
         status: true,
       });
     } else {
@@ -71,19 +58,19 @@ const findAllUsers = async (req, res) => {
     });
   }
 };
-// Method for find user datas by IDs
-const findByIdUsers = async (req, res) => {
+
+const itemFindById = async (req, res) => {
   try {
-    const dataUser = await userModel.find({ _id: req.params.id });
-    if (dataUser.length > 0) {
+    const dataitem = await itemModel.find({ _id: req.params.id });
+    if (dataitem.length > 0) {
       res.status(200).json({
         message: "Data tersedia.",
-        data: dataUser,
+        data: dataitem,
         status: true,
       });
     } else {
       res.status(404).json({
-        message: "Data dengan Id tersebut tidak ditemukan.",
+        message: `Data dengan Id ${req.params.id} tersebut tidak ditemukan.`,
         data: null,
         status: false,
       });
@@ -97,13 +84,13 @@ const findByIdUsers = async (req, res) => {
   }
 };
 
-// Method for edit user datas
-const editUsers = async (req, res) => {
+// Method for edit item datas
+const itemEdit = async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
     const options = { new: true };
-    const cekExist = await userModel.findOne({
+    const cekExist = await itemModel.findOne({
       _id: id,
     });
     if (cekExist === null) {
@@ -116,9 +103,9 @@ const editUsers = async (req, res) => {
       });
     } else {
       updatedData.update_at = Date.now();
-      const data = await userModel.findByIdAndUpdate(id, updatedData, options);
+      const data = await itemModel.findByIdAndUpdate(id, updatedData, options);
       res.status(200).json({
-        message: `Data user ${data.user_name}, berhasil diupdate!`,
+        message: `Data item ${data.item_name}, berhasil diupdate!`,
         data: {
           id: id,
           befor_update: cekExist,
@@ -137,13 +124,13 @@ const editUsers = async (req, res) => {
   }
 };
 
-// Method for delete user datas
-const deleteUsers = async (req, res) => {
+// Method for delete item datas
+const itemDelete = async (req, res) => {
   try {
     const id = req.params.id;
-    const data = await userModel.findByIdAndDelete({ _id: id });
+    const data = await itemModel.findByIdAndDelete({ _id: id });
     res.status(200).json({
-      message: `Data user ${data.user_name}, berhasil dihapus!`,
+      message: `Data item ${data.item_name}, berhasil dihapus!`,
       data: id,
       status: true,
     });
@@ -155,11 +142,11 @@ const deleteUsers = async (req, res) => {
     });
   }
 };
+
 module.exports = {
-  homeUser,
-  createUsers,
-  findAllUsers,
-  findByIdUsers,
-  editUsers,
-  deleteUsers,
+  itemCreate,
+  itemFindAll,
+  itemFindById,
+  itemEdit,
+  itemDelete,
 };

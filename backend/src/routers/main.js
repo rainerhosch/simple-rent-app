@@ -6,26 +6,16 @@ const mainRouter = express.Router();
 const wellcomeRouter = require("./wellcome");
 const userRouter = require("./users");
 const genderRouter = require("./genders");
+const itemRouter = require("./items");
 const categoryItemRouter = require("./item_category");
 const userRoleRouter = require("./user_role");
-// const locationRouter = require("./locations");
-// const historyRouter = require("./history");
-// const testimonialRouter = require("./testimonial");
-// const authRouter = require("./auth");
-// const adminRouter = require("./admin");
-
-// const upload = require('../middlewares/upload');
 
 mainRouter.use("/wellcome", wellcomeRouter); //wellcome
-// mainRouter.use("/auth", authRouter);
-// mainRouter.use("/admin", adminRouter);
 mainRouter.use("/users", userRouter);
 mainRouter.use("/genders", genderRouter);
+mainRouter.use("/items", itemRouter);
 mainRouter.use("/categories", categoryItemRouter);
 mainRouter.use("/user_role", userRoleRouter);
-// mainRouter.use("/locations", locationRouter);
-// mainRouter.use("/history", historyRouter);
-// mainRouter.use("/testimonial", testimonialRouter);
 
 // express.method(endpoint, heandler1/2, dsb)
 mainRouter.get("/", (require, response) => {
