@@ -44,6 +44,10 @@ frontend/node_modules/
 mobile-app/node_modules/
 jspm_packages/
 
+#dir for backend-mysql
+backend-mysql/node_modules/
+backend-mysql/package-lock.json
+
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
