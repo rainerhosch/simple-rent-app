@@ -2,18 +2,10 @@ import { ACTION_STRING } from "./actionString";
 import {
   vehicleTypeLimit,
   vehicleSearchFilter,
-  getItems,
 } from "../../modules/utils/vehicle";
 
 const { listVehicle, listPopularVehicle, listCar, listMotorbike, listBike } =
   ACTION_STRING;
-
-export const listItems = (params) => {
-  return {
-    type: listPopularVehicle,
-    payload: getItems(params),
-  };
-};
 
 export const listVehiclePopularAction = (params) => {
   return {

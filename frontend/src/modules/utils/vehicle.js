@@ -1,14 +1,8 @@
 import axios from "axios";
-const urlVehicles = process.env.REACT_APP_HOST + "/users/getAll";
-
-export const getItems = (body, token) => {
-  return axios.get(urlVehicles, body, {
-    headers: { "x-access-token": token },
-  });
-};
+const urlVehicles = process.env.REACT_APP_HOST + "/vehicles";
 
 export const postVehicle = (body, token) => {
-  return axios.get(urlVehicles, body, {
+  return axios.post(urlVehicles, body, {
     headers: { "x-access-token": token },
   });
 };
