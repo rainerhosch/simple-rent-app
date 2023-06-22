@@ -1,5 +1,5 @@
 import axios from "axios";
-const urlVehicles = process.env.REACT_APP_HOST + "/items/getAll";
+const urlVehicles = process.env.REACT_APP_HOST + "/users/getAll";
 
 export const getItems = (body, token) => {
   return axios.get(urlVehicles, body, {
