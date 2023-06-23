@@ -8,7 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 
-import VertificationAccount from "./pages/VertificationAccount";
+import VerificationAccount from "./pages/VerificationAccount";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -52,7 +52,7 @@ const main = () => {
               <Route path="register" element={<Register />} />
               <Route
                 path="auth/verify/:pin"
-                element={<VertificationAccount />}
+                element={<VerificationAccount />}
               />
               <Route path="forgot/password" element={<ForgotPassword />} />
             </Route>

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllLocation } from "../../modules/utils/location";
 import { Link, useNavigate } from "react-router-dom";
 
-import backgrounBefore from "../../assets/img/Home-bg-before.webp";
+import backgroundBefore from "../../assets/img/Home-bg-before.webp";
 import backgroundAfter from "../../assets/img/Home-bg-after.webp";
 
 import CardVehicle from "../../components/CardVehicles";
@@ -69,7 +69,7 @@ const Home = () => {
         className={styles["menu-bg"]}
         style={{
           backgroundImage: !token
-            ? `url('${backgrounBefore}')`
+            ? `url('${backgroundBefore}')`
             : `url(${backgroundAfter})`,
         }}
       >

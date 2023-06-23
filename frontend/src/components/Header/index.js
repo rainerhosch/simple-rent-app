@@ -167,16 +167,6 @@ const Header = () => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {/* <li>
-                  <Link to={"/"}>
-                    <img
-                      src={emailImg}
-                      alt="avatar"
-                      className={styles["email-logo"]}
-                    />
-                  </Link>
-                </li> */}
-
                 <li className={`dropdown ${styles["nav-item"]}`}>
                   <div
                     id="navbarDropdown"

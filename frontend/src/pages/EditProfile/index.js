@@ -23,10 +23,10 @@ const EditProfile = () => {
   const [imgFile, setImgFile] = useState("");
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [selectGender, setSelectGender] = useState("");
   const [userDob, setUserDob] = useState("");
   const [userAddress, setUserAddress] = useState("");
   const [userPhone, setUserPhone] = useState("");
+  const [selectedGender, setSelectedGender] = useState("");
 
   const [isModal, setIsModal] = useState(false);
   const [curPass, setCurrPass] = useState("");
@@ -38,11 +38,12 @@ const EditProfile = () => {
 
   const { active_year, address, dob, email, gender, image, name, phone } =
     userData;
+  const [selectGender, setSelectGender] = useState(gender);
 
   useEffect(() => {
     if (name !== null) setUserName(name);
-    if (gender === "male") setSelectGender(1);
-    if (gender === "female") setSelectGender(2);
+    if (gender === "Laki-Laki") setSelectGender(1);
+    if (gender === "Perempuan") setSelectGender(2);
     if (gender === "confidential") setSelectGender(3);
     if (image !== null) setShowImg(`${process.env.REACT_APP_HOST}/${image}`);
     if (dob !== null) setUserDob(dob);
@@ -50,6 +51,25 @@ const EditProfile = () => {
     setUserEmail(email);
     setUserPhone(phone);
   }, [address, dob, email, gender, image, name, phone]);
+
+  const handleRadioChange = (e) => {
+    const target = e.target;
+    if (target.checked) {
+      setSelectGender(target.value);
+      if (target.value === "Laki-laki") {
+        setSelectedGender(1);
+      }
+      if (target.value === "Perempuan") {
+        setSelectedGender(2);
+      }
+      if (selectedGender === "") {
+        alert("Please select again");
+      }
+      console.log("select " + selectGender);
+      console.log("selected " + target.value);
+      console.log("selected_id " + selectedGender);
+    }
+  };
 
   const imageHandler = (e) => {
     const fileImg = e.target.files[0];
@@ -62,7 +82,7 @@ const EditProfile = () => {
     body.append("name", userName);
     body.append("email", userEmail);
     body.append("phone", userPhone);
-    body.append("gender_id", selectGender);
+    body.append("gender_id", selectedGender);
     body.append("dob", userDob);
     body.append("address", userAddress);
     if (imgFile !== "") body.append("image", imgFile);
@@ -181,8 +201,8 @@ const EditProfile = () => {
 
   const cancelHandler = () => {
     if (name !== null) setUserName(name);
-    if (gender === "male") setSelectGender(1);
-    if (gender === "female") setSelectGender(2);
+    if (gender === "Laki-laki") setSelectGender(1);
+    if (gender === "Perempuan") setSelectGender(2);
     if (gender === "confidential") setSelectGender(3);
     if (image !== null) {
       setShowImg(`${process.env.REACT_APP_HOST}/${image}`);
@@ -249,26 +269,30 @@ const EditProfile = () => {
             <div className={styles["radio-orange-male"]}>
               <input
                 type={"radio"}
-                checked="checked"
+                // checked="true"
+                checked={selectGender === "Laki-laki"}
+                value="Laki-laki"
                 name="radio"
                 className={styles["select-gender"]}
-                onChange={() => setSelectGender(1)}
+                onChange={handleRadioChange}
               />
               <span className={styles["check-mark"]} />
-              <p id={styles["male-text"]}>Male</p>
+              <p id={styles["male-text"]}>Laki-laki</p>
             </div>
           </label>
           <label className={styles["gender"]}>
             <div className={styles["radio-orange-female"]}>
               <input
                 type={"radio"}
-                checked="checked"
+                // checked="true"
+                checked={selectGender === "Perempuan"}
+                value="Perempuan"
                 name="radio"
                 className={styles["select-gender"]}
-                onChange={() => setSelectGender(2)}
+                onChange={handleRadioChange}
               />
               <span className={styles["check-mark"]} />
-              <p id={styles["female-text"]}>female</p>
+              <p id={styles["female-text"]}>Perempuan</p>
             </div>
           </label>
         </section>
