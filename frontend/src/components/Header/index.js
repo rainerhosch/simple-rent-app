@@ -7,7 +7,7 @@ import { userAction, logoutAction } from "../../redux/actions/auth";
 
 import Swal from "sweetalert2";
 
-import emailImg from "../../assets/img/email.png";
+import logoImg from "../../assets/img/babbystuff-transformed.png";
 import profileImgDefault from "../../assets/img/profile-default.png";
 
 import storage from "redux-persist/lib/storage";
@@ -84,8 +84,8 @@ const Header = () => {
   };
 
   return (
-    <header className="navbar navbar-expand-lg navbar-light bg-white">
-      <nav className={`container ${styles["nav-pad"]}`}>
+    <header className="container navbar navbar-expand-lg navbar-light bg-white ">
+      <nav className={`container ${styles["nav-pad"]} `}>
         <button
           className="navbar-toggler"
           type="button"
@@ -98,16 +98,24 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <section className={styles["donut-up"]}>
+        {/* <section className={styles["donut-up"]}>
           <span className={styles["circle-black"]}></span>
           <span className={styles["circle-yellow"]}></span>
-        </section>
+        </section> */}
         <section className={styles["brand-name"]}>
+          <img
+            src={logoImg}
+            alt="avatar"
+            className={styles["brand-logo"]}
+          ></img>
           <p>Babystuff</p>
         </section>
 
-        <section className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+        <section
+          className={`collapse navbar-collapse ${styles["nav-menu"]}`}
+          id="navbarNav"
+        >
+          <ul className="navbar-nav">
             <li className={`nav-item ${styles["nav-item"]}`}>
               <NavLink
                 to={"/home"}
@@ -122,7 +130,7 @@ const Header = () => {
                 to={"/vehicle/type"}
                 className={`nav-link ${styles["nav-link"]}`}
               >
-                <p>Vehicle Type</p>
+                <p>Product</p>
               </NavLink>
             </li>
 
@@ -159,7 +167,7 @@ const Header = () => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                <li>
+                {/* <li>
                   <Link to={"/"}>
                     <img
                       src={emailImg}
@@ -167,7 +175,7 @@ const Header = () => {
                       className={styles["email-logo"]}
                     />
                   </Link>
-                </li>
+                </li> */}
 
                 <li className={`dropdown ${styles["nav-item"]}`}>
                   <div

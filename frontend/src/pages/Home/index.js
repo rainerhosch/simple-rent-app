@@ -75,7 +75,10 @@ const Home = () => {
       >
         <div className={styles["transparan-home"]}>
           <article className={`container ${styles["select-order"]}`}>
-            <h1 className={styles["explore-travel"]}>Explore and Travel</h1>
+            <h1 className={styles["explore-travel"]}>
+              Menyewakan Berbagai Macam Perlengkapan Bayi dari Newborn - 2 tahun
+              dan Mainan Anak lengkap.
+            </h1>
             <p className={styles["finder"]}>Vehicle Finder</p>
             <div className={styles["line-wrapper"]}>
               <span className={styles["line"]}></span>

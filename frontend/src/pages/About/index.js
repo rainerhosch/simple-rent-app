@@ -1,22 +1,27 @@
 import React from "react";
+import styles from "./index.module.scss";
 import Main from "../../components/Main";
 
 const About = () => {
   return (
     <Main>
-      <main className="container">
-        <article>
-          <p className="text-center h2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-          </p>
-        </article>
-      </main>
+      <section className="container">
+        <div className={styles["about-page"]}>
+          <div class="card-body text-center">
+            <h5 class="card-title mb-5">Tentang</h5>
+            <p className="card-tex">
+              Kami Babystuffrent adalah rental perlengkapan bayi yang bertujuan
+              membantu para orang tua untuk dapat memberikan fasilitas terbaik
+              untuk menemani tumbuh kembang anak. Mulai beroperasi pada
+              September 2017, dimulai dengan 15 barang dan saat ini telah
+              mengelola ratusan barang perlengkapan bayi. Saat ini Baby Stuff
+              Rent tidak hanya melayani para orang tua di Purwakarta. Akan
+              tetapi kami siap untuk melayani para orang tua di daerah Jakarta,
+              Depok, Tangerang Selatan, Bekasi, dan Bandung.
+            </p>
+          </div>
+        </div>
+      </section>
     </Main>
   );
 };

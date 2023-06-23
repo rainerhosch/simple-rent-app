@@ -6,6 +6,42 @@
   margin-right: 38px;
 }
 
+/* .navbar-collapse {
+  position: absolute;
+  top: auto;
+  right: 50px;
+} */
+
+.nav-menu {
+  justify-content: flex-end;
+  flex-grow: 0;
+  right: 1px;
+  top: auto;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+.nav-pad {
+  display: contents;
+  padding-left: 12px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.brand-name {
+  display: flex;
+  max-width: fit-content;
+  right: 10px;
+  top: 13px;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #028c92;
+}
+
+.brand-name > p {
+  margin: auto;
+}
 /* donat atau ban */
 .donut-up {
   display: none;
@@ -33,16 +69,6 @@
 
   left: 12px;
   top: 12px;
-}
-
-.brand-name {
-  position: absolute;
-  right: 10px;
-  top: 13px;
-  font-size: 20px;
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  color: #b76e00;
 }
 
 /* navigasi */
@@ -107,25 +133,28 @@
   color: #ffcd61;
 }
 
-.email-logo {
+.brand-logo {
+  margin-right: 10px;
   width: 36px;
   height: 36px;
-  /* margin-right: 41px */
 }
 
 .user-profile-img {
   position: relative;
-  width: 54.62px;
-  height: 54.15px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   object-fit: cover;
-  top: 10px;
+  top: auto;
   /* bottom: 12px; */
   cursor: pointer;
 }
 
 /* tablet */
 @media (min-width: 768px) {
+  .nav-pad {
+    padding-left: 35px;
+  }
   .donut-up {
     display: block;
     right: 72px;
@@ -142,6 +171,17 @@
 }
 
 @media (min-width: 992px) {
+  .nav-menu {
+    left: 464px;
+  }
+
+  .nav-menu > ul {
+    position: relative;
+    top: 8px;
+  }
+  .nav-pad {
+    padding-left: 35px;
+  }
   .donut-up {
     display: block;
     left: 21px;
@@ -150,9 +190,6 @@
   .brand-name {
     left: 78px;
     top: 30px;
-  }
-  .nav-pad {
-    padding: 15px;
   }
   .nav-item {
     left: 19px;
@@ -168,11 +205,14 @@
     top: 0;
   }
   .user-profile-img {
-    top: -8px;
+    top: auto;
   }
 }
 
 @media (min-width: 1440px) {
+  .nav-menu {
+    left: 898px;
+  }
   .donut-up {
     display: block;
     left: 88px;
@@ -183,11 +223,14 @@
 }
 
 @media (min-width: 2460px) {
+  .nav-menu {
+    left: 1374px;
+  }
   .donut-up {
     display: block;
-    left: 688px;
+    left: 624px;
   }
   .brand-name {
-    left: 745px;
+    left: 679px;
   }
 }
