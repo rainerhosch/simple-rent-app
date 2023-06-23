@@ -102,6 +102,9 @@ const Header = () => {
           <span className={styles["circle-black"]}></span>
           <span className={styles["circle-yellow"]}></span>
         </section>
+        <section className={styles["brand-name"]}>
+          <p>Babystuff</p>
+        </section>
 
         <section className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

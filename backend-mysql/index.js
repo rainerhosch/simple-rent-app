@@ -22,6 +22,8 @@ const corsOptions = {
   origin: [
     "http://localhost:3000",
     "http://localhost:8080",
+    "http://localhost:8081",
+    "http://localhost:8000",
     "https://vehicle-rental-react.vercel.app",
   ],
   allowedHeader: "x-access-token",

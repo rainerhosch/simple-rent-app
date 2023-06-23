@@ -8,7 +8,7 @@ const send = nodemailer.createTransport({
   },
   host: "smtp.gmail.com",
   port: 465,
-  secure: false,
+  secure: true,
 });
 
 const sendPinForgotPass = (email, pin, name) => {
