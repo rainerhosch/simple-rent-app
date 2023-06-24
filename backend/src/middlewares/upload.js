@@ -51,6 +51,6 @@ const uploadItem = multer({
     }
   },
   limits: { fileSize: 1 * 1024 * 5120 }, //5mb
-}).array("images", 3);
+}).array("item_image", 3);
 
 module.exports = { uploadProfile, uploadItem };

@@ -19,7 +19,7 @@ const schema = mongoose.Schema({
   },
   item_image: {
     require: true,
-    type: String,
+    type: Object,
   },
 });
 

@@ -11,6 +11,9 @@ userRouter.post("/create", uploadHandleUsers, userController.createUsers);
 userRouter.get("/getAll", userController.findAllUsers);
 userRouter.get("/getOne/:id", userController.findByIdUsers);
 userRouter.patch("/edit/:id", uploadHandleUsers, userController.editUsers);
+userRouter.patch("/uploads/:id", uploadHandleUsers, function (req, res) {
+  //   console.log(req.file);
+});
 userRouter.delete("/delete/:id", userController.deleteUsers);
 
 module.exports = userRouter;

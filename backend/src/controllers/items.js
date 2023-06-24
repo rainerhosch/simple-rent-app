@@ -1,4 +1,5 @@
 const itemModel = require("../schemas/items");
+const fs = require("fs");
 
 // Method for create item datas
 const itemCreate = async (req, res) => {
@@ -86,6 +87,7 @@ const itemFindById = async (req, res) => {
 
 // Method for edit item datas
 const itemEdit = async (req, res) => {
+  const uploadedImg = req.files;
   try {
     const id = req.params.id;
     const updatedData = req.body;
@@ -103,6 +105,12 @@ const itemEdit = async (req, res) => {
       });
     } else {
       updatedData.update_at = Date.now();
+      let img_data = {};
+      for (const key in uploadedImg) {
+        const value = uploadedImg[key];
+        img_data[key] = value;
+      }
+      updatedData.item_image = img_data;
       const data = await itemModel.findByIdAndUpdate(id, updatedData, options);
       res.status(200).json({
         message: `Data item ${data.item_name}, berhasil diupdate!`,
@@ -128,12 +136,31 @@ const itemEdit = async (req, res) => {
 const itemDelete = async (req, res) => {
   try {
     const id = req.params.id;
-    const data = await itemModel.findByIdAndDelete({ _id: id });
-    res.status(200).json({
-      message: `Data item ${data.item_name}, berhasil dihapus!`,
-      data: id,
-      status: true,
+    const cekExist = await itemModel.findOne({
+      _id: id,
     });
+    if (cekExist === null) {
+      res.status(200).json({
+        message: `Data tidak ditemukan!`,
+        data: {
+          id: id,
+        },
+        status: false,
+      });
+    } else {
+      let filePath = cekExist.item_image;
+      let dirFile = {};
+      for (const key in filePath) {
+        const value = "./public/img/items/" + filePath[key].filename;
+        dirFile[key] = fs.unlinkSync(value);
+      }
+      const data = await itemModel.findByIdAndDelete({ _id: id });
+      res.status(200).json({
+        message: `Data item ${data.item_name}, berhasil dihapus!`,
+        data: id,
+        status: true,
+      });
+    }
   } catch (error) {
     res.status(400).json({
       message: error.message,

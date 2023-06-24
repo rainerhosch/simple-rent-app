@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -10,6 +11,8 @@ const mainRouter = require("./src/routers/main");
 const PORT = process.env.PORT || 8000;
 const mongoString = process.env.DATABASE_URL;
 const server = express();
+server.use(bodyParser.json());
+
 const logger = morgan(
   ":method :url :status :res[content-length] - :response-time ms"
 );

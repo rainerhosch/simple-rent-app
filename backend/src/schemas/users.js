@@ -16,7 +16,7 @@ const schema = mongoose.Schema({
   },
   image: {
     require: true,
-    type: String,
+    type: Object,
   },
   phone: {
     require: true,

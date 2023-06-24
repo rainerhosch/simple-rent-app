@@ -1,5 +1,6 @@
 const userModel = require("../schemas/users");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
 
 const homeUser = (req, res) => {
   res.status(200).json({ message: "Hi from service users." });
@@ -100,6 +101,7 @@ const findByIdUsers = async (req, res) => {
 // Method for edit user datas
 const editUsers = async (req, res) => {
   try {
+    const uploadedImg = req.file;
     const id = req.params.id;
     const updatedData = req.body;
     const options = { new: true };
@@ -116,9 +118,10 @@ const editUsers = async (req, res) => {
       });
     } else {
       updatedData.update_at = Date.now();
+      updatedData.image = uploadedImg;
       const data = await userModel.findByIdAndUpdate(id, updatedData, options);
       res.status(200).json({
-        message: `Data user ${data.user_name}, berhasil diupdate!`,
+        message: `Data user ${data.name}, berhasil diupdate!`,
         data: {
           id: id,
           befor_update: cekExist,
@@ -141,12 +144,28 @@ const editUsers = async (req, res) => {
 const deleteUsers = async (req, res) => {
   try {
     const id = req.params.id;
-    const data = await userModel.findByIdAndDelete({ _id: id });
-    res.status(200).json({
-      message: `Data user ${data.user_name}, berhasil dihapus!`,
-      data: id,
-      status: true,
+    const cekExist = await userModel.findOne({
+      _id: id,
     });
+    if (cekExist === null) {
+      res.status(200).json({
+        message: `Data tidak ditemukan!`,
+        data: {
+          id: id,
+        },
+        status: false,
+      });
+    } else {
+      let filePath = cekExist.image;
+      const value = "./public/img/users/" + filePath.filename;
+      fs.unlinkSync(value);
+      const data = await userModel.findByIdAndDelete({ _id: id });
+      res.status(200).json({
+        message: `Data user ${cekExist.name}, berhasil dihapus!`,
+        data: id,
+        status: true,
+      });
+    }
   } catch (error) {
     res.status(400).json({
       message: error.message,
