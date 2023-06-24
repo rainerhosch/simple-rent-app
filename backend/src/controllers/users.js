@@ -9,6 +9,7 @@ const homeUser = (req, res) => {
 // Method for create user datas
 const createUsers = async (req, res) => {
   try {
+    const uploadedImg = req.file;
     const fieldFilter = req.body.email;
     const cekExist = await userModel.findOne({
       email: [fieldFilter],
@@ -22,6 +23,11 @@ const createUsers = async (req, res) => {
           dataPass = "default";
         }
         dataToSave[i].password = await bcrypt.hash(dataPass, salt);
+      }
+      if (uploadedImg !== undefined) {
+        dataToSave.image = uploadedImg;
+      } else {
+        dataToSave.image = "user-default.jpg";
       }
       const savedData = userModel.insertMany(dataToSave);
       res.status(200).json({
