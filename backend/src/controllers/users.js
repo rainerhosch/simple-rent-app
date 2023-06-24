@@ -164,7 +164,9 @@ const deleteUsers = async (req, res) => {
     } else {
       let filePath = cekExist.image;
       const value = "./public/img/users/" + filePath.filename;
-      fs.unlinkSync(value);
+      if (filePath !== "user-default.jpg") {
+        fs.unlinkSync(value);
+      }
       const data = await userModel.findByIdAndDelete({ _id: id });
       res.status(200).json({
         message: `Data user ${cekExist.name}, berhasil dihapus!`,
