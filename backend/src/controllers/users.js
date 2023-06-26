@@ -28,7 +28,14 @@ const createUsers = async (req, res) => {
       if (uploadedImg !== undefined) {
         dataToSave.image = uploadedImg;
       } else {
-        dataToSave.image = "user-default.jpg";
+        dataToSave.image ={
+          "fieldname": "image",
+          "originalname":"user-default.png",
+          "mimetype": "image/png",
+          "destination": "./public/img/users",
+          "filename":"user-default.png",
+          "path": "public\\img\\users\\image-1687774465660.png"
+      };
       }
       const savedData = userModel.insertMany(dataToSave);
       res.status(200).json({
@@ -168,13 +175,13 @@ const deleteUsers = async (req, res) => {
     } else {
       let filePath = cekExist.image;
       const value = "./public/img/users/" + filePath.filename;
-      if (filePath !== "user-default.jpg") {
+      if (filePath.filename !== "user-default.png") {
         fs.unlinkSync(value);
       }
       const data = await userModel.findByIdAndDelete({ _id: id });
       res.status(200).json({
         message: `Data user ${cekExist.name}, berhasil dihapus!`,
-        data: id,
+        data: data,
         status: true,
       });
     }
@@ -186,6 +193,8 @@ const deleteUsers = async (req, res) => {
     });
   }
 };
+
+
 module.exports = {
   homeUser,
   createUsers,

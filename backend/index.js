@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8000;
 const mongoString = process.env.DATABASE_URL;
 const server = express();
 server.use(bodyParser.json());
-server.use(express.static(path.join(__dirname, 'public')));
+server.use(express.static('public'));
 
 const logger = morgan(
   ":method :url :status :res[content-length] - :response-time ms"
