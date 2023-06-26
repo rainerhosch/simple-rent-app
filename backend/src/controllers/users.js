@@ -1,6 +1,7 @@
 const userModel = require("../schemas/users");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
+const path = require('path');
 
 const homeUser = (req, res) => {
   res.status(200).json({ message: "Hi from service users." });
@@ -146,6 +147,9 @@ const editUsers = async (req, res) => {
   }
 };
 
+// const getUserImage = async (req, res) => {
+//   res.sendFile(path.join('./public/img/users/' + req.params.filename));
+// };
 // Method for delete user datas
 const deleteUsers = async (req, res) => {
   try {
@@ -185,6 +189,7 @@ const deleteUsers = async (req, res) => {
 module.exports = {
   homeUser,
   createUsers,
+  // getUserImage,
   findAllUsers,
   findByIdUsers,
   editUsers,

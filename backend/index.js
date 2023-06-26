@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const path = require('path');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 8000;
 const mongoString = process.env.DATABASE_URL;
 const server = express();
 server.use(bodyParser.json());
+server.use(express.static(path.join(__dirname, 'public')));
 
 const logger = morgan(
   ":method :url :status :res[content-length] - :response-time ms"
@@ -36,6 +38,7 @@ server.listen(PORT, () => {
 const corsOptions = {
   origin: [
     "http://localhost:3000",
+    "http://localhost",
     "http://localhost:8080",
     "https://rent-backend.vercel.app",
   ],
