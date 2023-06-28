@@ -4,6 +4,7 @@ const mainRouter = express.Router();
 
 // deklarasi router sub/import
 const wellcomeRouter = require("./wellcome");
+const transactionsRouter = require("./transactions");
 const userRouter = require("./users");
 const genderRouter = require("./genders");
 const itemRouter = require("./items");
@@ -11,6 +12,7 @@ const categoryItemRouter = require("./item_category");
 const userRoleRouter = require("./user_role");
 
 mainRouter.use("/wellcome", wellcomeRouter); //wellcome
+mainRouter.use("/transactions", transactionsRouter);
 mainRouter.use("/users", userRouter);
 mainRouter.use("/genders", genderRouter);
 mainRouter.use("/items", itemRouter);
