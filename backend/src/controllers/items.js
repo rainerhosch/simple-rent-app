@@ -5,12 +5,29 @@ const fs = require("fs");
 const itemCreate = async (req, res) => {
   // res.send(cekExist);
   try {
+    const uploadedImg = req.files;
     const fieldFilter = req.body.item_name;
     const cekExist = await itemModel.findOne({
       item_name: [fieldFilter],
     });
     if (cekExist === null) {
-      const dataToSave = itemModel.insertMany(req.body);
+      const dataToSave = req.body;
+      if (uploadedImg !== undefined) {
+        dataToSave.item_image = uploadedImg;
+      } else {
+        for (const key in dataToSave) {
+          dataToSave[key].item_image = {
+            fieldname: "item_image",
+            originalname: "item_image-default.png",
+            mimetype: "image/png",
+            destination: "./public/img/items",
+            filename: "item_image-default.png",
+            path: "public\\img\\items\\item_image-default.png",
+          };
+        }
+      }
+      // console.log(uploadedImg);
+      const savedData = itemModel.insertMany(dataToSave);
       res.status(200).json({
         message: "success create data",
         data: dataToSave,
@@ -105,12 +122,15 @@ const itemEdit = async (req, res) => {
       });
     } else {
       updatedData.update_at = Date.now();
-      let img_data = {};
-      for (const key in uploadedImg) {
-        const value = uploadedImg[key];
-        img_data[key] = value;
+
+      if (uploadedImg !== undefined) {
+        let img_data = {};
+        for (const key in uploadedImg) {
+          const value = uploadedImg[key];
+          img_data[key] = value;
+        }
+        updatedData.item_image = img_data;
       }
-      updatedData.item_image = img_data;
       const data = await itemModel.findByIdAndUpdate(id, updatedData, options);
       res.status(200).json({
         message: `Data item ${data.item_name}, berhasil diupdate!`,
@@ -152,7 +172,9 @@ const itemDelete = async (req, res) => {
       let dirFile = {};
       for (const key in filePath) {
         const value = "./public/img/items/" + filePath[key].filename;
-        dirFile[key] = fs.unlinkSync(value);
+        if (filePath.filename !== "item_image-default.png") {
+          dirFile[key] = fs.unlinkSync(value);
+        }
       }
       const data = await itemModel.findByIdAndDelete({ _id: id });
       res.status(200).json({

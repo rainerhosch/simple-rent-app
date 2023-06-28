@@ -1,7 +1,7 @@
 const userModel = require("../schemas/users");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
-const path = require('path');
+const path = require("path");
 
 const homeUser = (req, res) => {
   res.status(200).json({ message: "Hi from service users." });
@@ -28,14 +28,14 @@ const createUsers = async (req, res) => {
       if (uploadedImg !== undefined) {
         dataToSave.image = uploadedImg;
       } else {
-        dataToSave.image ={
-          "fieldname": "image",
-          "originalname":"user-default.png",
-          "mimetype": "image/png",
-          "destination": "./public/img/users",
-          "filename":"user-default.png",
-          "path": "public\\img\\users\\image-1687774465660.png"
-      };
+        dataToSave.image = {
+          fieldname: "image",
+          originalname: "user-default.png",
+          mimetype: "image/png",
+          destination: "./public/img/users",
+          filename: "user-default.png",
+          path: "public\\img\\users\\user-default.png",
+        };
       }
       const savedData = userModel.insertMany(dataToSave);
       res.status(200).json({
@@ -132,7 +132,9 @@ const editUsers = async (req, res) => {
       });
     } else {
       updatedData.update_at = Date.now();
-      updatedData.image = uploadedImg;
+      if (uploadedImg !== undefined) {
+        updatedData.image = uploadedImg;
+      }
       const data = await userModel.findByIdAndUpdate(id, updatedData, options);
       res.status(200).json({
         message: `Data user ${data.name}, berhasil diupdate!`,
@@ -193,7 +195,6 @@ const deleteUsers = async (req, res) => {
     });
   }
 };
-
 
 module.exports = {
   homeUser,

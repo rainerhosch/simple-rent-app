@@ -7,7 +7,7 @@ const schema = mongoose.Schema({
   },
   item_category: {
     require: true,
-    type: String,
+    type: Object,
   },
   item_brand: {
     require: true,

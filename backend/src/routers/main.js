@@ -14,7 +14,7 @@ mainRouter.use("/wellcome", wellcomeRouter); //wellcome
 mainRouter.use("/users", userRouter);
 mainRouter.use("/genders", genderRouter);
 mainRouter.use("/items", itemRouter);
-mainRouter.use("/categories", categoryItemRouter);
+mainRouter.use("/itemcategories", categoryItemRouter);
 mainRouter.use("/user_role", userRoleRouter);
 
 // express.method(endpoint, heandler1/2, dsb)
